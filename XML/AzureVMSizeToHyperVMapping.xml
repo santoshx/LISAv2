@@ -11,7 +11,7 @@
     </Standard_A1>
     <Standard_A2>
         <NumberOfCores>2</NumberOfCores>
-        <MemoryInMB>3584</MemoryInMB>
+        <MemoryInMB>2048</MemoryInMB>
     </Standard_A2>
     <Standard_A3>
         <NumberOfCores>4</NumberOfCores>
@@ -43,7 +43,7 @@
     </Basic_A1>
     <Basic_A2>
         <NumberOfCores>2</NumberOfCores>
-        <MemoryInMB>3584</MemoryInMB>
+        <MemoryInMB>2048</MemoryInMB>
     </Basic_A2>
     <Basic_A3>
         <NumberOfCores>4</NumberOfCores>
@@ -55,7 +55,7 @@
     </Basic_A4>
     <Standard_D1_v2>
         <NumberOfCores>1</NumberOfCores>
-        <MemoryInMB>3584</MemoryInMB>
+        <MemoryInMB>2048</MemoryInMB>
     </Standard_D1_v2>
     <Standard_D2_v2>
         <NumberOfCores>2</NumberOfCores>
@@ -195,7 +195,7 @@
     </Standard_D32_v3>
     <Standard_DS1>
         <NumberOfCores>1</NumberOfCores>
-        <MemoryInMB>3584</MemoryInMB>
+        <MemoryInMB>2048</MemoryInMB>
     </Standard_DS1>
     <Standard_DS2>
         <NumberOfCores>2</NumberOfCores>
@@ -251,7 +251,7 @@
     </Standard_B8ms>
     <Standard_DS1_v2>
         <NumberOfCores>1</NumberOfCores>
-        <MemoryInMB>3584</MemoryInMB>
+        <MemoryInMB>2048</MemoryInMB>
     </Standard_DS1_v2>
     <Standard_DS2_v2>
         <NumberOfCores>2</NumberOfCores>
@@ -491,7 +491,7 @@
     </Standard_E64s_v3>
     <Standard_D1>
         <NumberOfCores>1</NumberOfCores>
-        <MemoryInMB>3584</MemoryInMB>
+        <MemoryInMB>2048</MemoryInMB>
     </Standard_D1>
     <Standard_D2>
         <NumberOfCores>2</NumberOfCores>
