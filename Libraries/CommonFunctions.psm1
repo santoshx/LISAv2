@@ -3242,7 +3242,7 @@ function Convert-StringToUInt64{
 	return $uint64Size
 }
 
-function Run-Test{
+function Run-BashScript{
 	param(
 		[String] $vmPassword,
 		[String] $vmPort,
