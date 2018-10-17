@@ -99,12 +99,6 @@ Function Main
 			Throw "Insufficent disk free space, This test case requires ${tps.NewSize} free, Current free space is $($diskInfo.FreeSpace)"
 		}
 
-		# Copy files from home of user to home of root
-		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/STOR_VHDXResize_ReadWrite.sh /root/" -runAsSudo
-		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/STOR_VHDXResize_PartitionDisk.sh /root/" -runAsSudo
-		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/check_traces.sh /root/" -runAsSudo
-		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/constants.sh /root/" -runAsSudo
-
 		# Make sure if we can perform Read/Write operations on the guest VM
 		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "./STOR_VHDXResize_PartitionDisk.sh" -runAsSudo
 		if (-not $ret) {
@@ -170,12 +164,10 @@ Function Main
 
 		# Make sure if we can perform Read/Write operations on the guest VM
 		if ([int]($newVhdxGrowSize/1gb) -gt 2048) {
-			$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/STOR_VHDXResize_PartitionDiskOver2TB.sh /root/" -runAsSudo
 			$guest_script = "STOR_VHDXResize_PartitionDiskOver2TB.sh"
 		} else {
 			$guest_script = "STOR_VHDXResize_PartitionDisk.sh"
 			$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "echo 'rerun=yes' >> constants.sh" -runAsSudo
-			$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/constants.sh /root/" -runAsSudo
 		}
 
 		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "./$guest_script" -runAsSudo
