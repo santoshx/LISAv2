@@ -159,6 +159,7 @@ Function Main
 		}
 
 		# Copy files from home of user to home of root
+		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "chmod +x *.sh"
 		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/STOR_VHDXResize_ReadWrite.sh /root/" -runAsSudo
 		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/STOR_VHDXResize_PartitionDisk.sh /root/" -runAsSudo
 		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/check_traces.sh /root/" -runAsSudo

@@ -1104,10 +1104,11 @@ Function Test-TCP($testIP, $testport)
 	return $isConnected
 }
 
-Function RemoteCopy($uploadTo, $downloadFrom, $downloadTo, $port, $files, $username, $password, [switch]$upload, [switch]$download, [switch]$usePrivateKey, [switch]$doNotCompress) #Removed XML config
+Function RemoteCopy($uploadTo, $downloadFrom, $downloadTo, $port, $files, $username, $password, [switch]$upload, [switch]$download, [switch]$usePrivateKey) #Removed XML config
 {
 	$retry=1
 	$maxRetry=20
+	$doNotCompress=$true
 	if($upload)
 	{
 #LogMsg "Uploading the files"
