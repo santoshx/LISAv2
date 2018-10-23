@@ -79,15 +79,15 @@ Function Set-HardDiskSize
 	# Make sure if we can perform Read/Write operations on the guest VM
 	# if file size larger than 2T (2048G), use parted to format disk
 	if ([int]($newSize/1gb) -gt 2048) {
-		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/STOR_VHDXResize_PartitionDiskOver2TB.sh /root/" -runAsSudo
 		$guestScript = "STOR_VHDXResize_PartitionDiskOver2TB.sh"
+		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/$guestScript /root/" -runAsSudo
+		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "./$guestScript" -runAsSudo -runMaxAllowedTime 1200
 	} else {
 		$guestScript = "STOR_VHDXResize_PartitionDisk.sh"
 		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "echo 'rerun=yes' >> constants.sh" -runAsSudo
 		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "cp -f /home/$user/constants.sh /root/" -runAsSudo
+		$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "./$guestScript" -runAsSudo
 	}
-
-	$ret = RunLinuxCmd -ip $ip -port $port -username $user -password $password -command "./$guestScript" -runAsSudo
 	if (-not $ret) {
 		$testResult = "FAIL"
 		Throw "Running '${guestScript}'script failed on VM. check VM logs , exiting test case execution"
@@ -141,7 +141,7 @@ Function Main
 		LogMsg "Verify the file is a .vhdx"
 		if (-not $vhdPath.EndsWith(".vhdx") -and -not $vhdPath.EndsWith(".avhdx")) {
 			$testResult = "FAIL"
-			Throw "$controllerType $vhdxDrive.ControllerNumber lun $vhdxDrive.ControllerLocation virtual disk is not a .vhdx file."
+			Throw "$controllerType $vhdxDrive.ControllerNumber $vhdxDrive.ControllerLocation virtual disk is not a .vhdx file."
 		}
 
 		# Make sure there is sufficient disk space to grow the VHDX to the specified size
@@ -194,6 +194,7 @@ Function Main
 	} finally {
 		Stop-VM -VMName $vmName -ComputerName $hvServer -force
 		Remove-VMHardDiskDrive -VMHardDiskDrive $vhdxDrive
+		Remove-Item $vhdPath
 		Start-VM -Name $vmName -ComputerName $hvServer
 	}
 
