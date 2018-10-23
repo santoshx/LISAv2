@@ -98,6 +98,7 @@ Function Set-HardDiskSize
 Function Main
 {
 	param ($vmName, $hvServer, $ip, $port)
+	$resultArr = @()
 
 	try {
 		# if host build number lower than 9600, skip test
@@ -196,9 +197,10 @@ Function Main
 		Remove-VMHardDiskDrive -VMHardDiskDrive $vhdxDrive
 		Remove-Item $vhdPath
 		Start-VM -Name $vmName -ComputerName $hvServer
+		$resultArr += $testResult
 	}
 
-	return $TestResult
+	return GetFinalResultHeader -resultarr $resultArr
 } # end Main
 
 Main -vmName $VM.RoleName -hvServer $VM.HyperVHost -ip $VM.PublicIP -port $VM.SSHPort
