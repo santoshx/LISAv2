@@ -1463,6 +1463,7 @@
         <Tags>storage</Tags>
         <Priority>2</Priority>
        </test>
+    </test>
     <test>
         <testName>VHDX-RESIZE-TO-BIGGER512-FIXED-IDE</testName>
         <setupScript>.\Testscripts\Windows\AddVhdxHardDisk.ps1</setupScript>
@@ -1480,6 +1481,7 @@
         <Tags>storage</Tags>
         <Priority>2</Priority>
        </test>
+    </test>
     <test>
         <testName>VHDX-RESIZE-TO-BIGGER512-DYNAMIC-IDE</testName>
         <setupScript>.\Testscripts\Windows\AddVhdxHardDisk.ps1</setupScript>
@@ -1497,6 +1499,7 @@
         <Tags>storage</Tags>
         <Priority>2</Priority>
        </test>
+    </test>
     <test>
         <testName>VHDX-RESIZE-TO-SMALLER512</testName>
         <setupScript>.\Testscripts\Windows\AddVhdxHardDisk.ps1</setupScript>
@@ -1514,6 +1517,7 @@
         <Tags>storage</Tags>
         <Priority>2</Priority>
        </test>
+    </test>
     <test>
         <testName>VHDX-RESIZE-TO-SMALLER4096</testName>
         <setupScript>.\Testscripts\Windows\AddVhdxHardDisk.ps1</setupScript>
@@ -1531,6 +1535,37 @@
         <Tags>storage</Tags>
         <Priority>2</Priority>
        </test>
+    </test>
+    <test>
+        <testName>DYNAMIC-MEMORY-STARTUP-HIGH-COMPETE</testName>
+        <testScript>DM-REMOVE-UNDER-PRESSURE.ps1</testScript>
+        <files>.\Testscripts\Linux\utils.sh,.\Testscripts\Linux\check_traces.sh</files>
+        <setupType>ThreeVMsDM</setupType>
+        <Platform>HyperV</Platform>
+        <TestParameters>
+            <param>enableDM1=yes</param>
+            <param>minMem1=1024MB</param>
+            <param>maxMem1=60%</param>
+            <param>startupMem1=60%</param>
+            <param>memWeight1=0</param>
+            <param>staticMem1=1024MB</param>
+            <param>enableDM2=yes</param>
+            <param>minMem2=1024MB</param>
+            <param>maxMem2=40%</param>
+            <param>startupMem2=40%</param>
+            <param>memWeight2=0</param>
+            <param>staticMem2=1024MB</param>
+            <param>enableDM3=yes</param>
+            <param>minMem3=1024MB</param>
+            <param>maxMem3=25%</param>
+            <param>startupMem3=25%</param>
+            <param>memWeight3=100</param>
+            <param>staticMem3=1024MB</param>
+        </TestParameters>
+        <Category>Functional</Category>
+        <Area>Dynamic_Memory</Area>
+        <Tags>memory</Tags>
+    </test>
     <test>
         <testName>DYNAMIC-MEMORY-VERIFY-UDEV</testName>
         <setupScript>.\Testscripts\Windows\DM-CONFIGURE-MEMORY.ps1</setupScript>
